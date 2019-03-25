@@ -178,35 +178,41 @@ function watchSass(done) {
 }
 
 function watchJavascript(done) {
-  sources = [];
+  var sources = [];
   Object.keys(CONFIGS).forEach(function (key) {
     var config = CONFIGS[key];
     if (config.javascript && config.javascript.src) {
-      sources.push(config.javascript.src);
+      for (src of config.javascript.src) {
+        sources.push(src);
+      }
     }
   });
   gulp.watch(sources, buildJavascript);
   return done();
 }
 
-function watchImages() {
-  sources = [];
+function watchImages(done) {
+  var sources = [];
   Object.keys(CONFIGS).forEach(function (key) {
     var config = CONFIGS[key];
     if (config.images && config.images.src) {
-      sources.push(config.images.src);
+      for (src of config.images.src) {
+        sources.push(src);
+      }
     }
   });
   gulp.watch(sources, buildImages);
   return done();
 }
 
-function watchFonts() {
-  sources = [];
+function watchFonts(done) {
+  var sources = [];
   Object.keys(CONFIGS).forEach(function (key) {
     var config = CONFIGS[key];
     if (config.fonts && config.fonts.src) {
-      sources.push(config.fonts.src);
+      for (src of config.fonts.src) {
+        sources.push(config.fonts.src);
+      }
     }
   });
   gulp.watch(sources, buildFonts);
