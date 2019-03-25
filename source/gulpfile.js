@@ -84,7 +84,9 @@ function buildImages(done) {
     if (config.images && config.images.src && config.images.dest) {
       gulp.src(config.images.src)
           .pipe(mode.development(changed(config.images.dest)))
-          .pipe(imagemin({progressive: true}))
+          .pipe(imagemin([
+            imagemin.jpegtran({progressive: true})
+          ]))
           .pipe(gulp.dest(config.images.dest));
     }
   });
